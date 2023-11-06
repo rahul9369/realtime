@@ -1,23 +1,19 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const SeedDB = require("./seed");
-const prodRouter = require("./route");
-
+const seedDB = require("./seed");
+const blogRoutes = require("./route");
 mongoose
-  .connect("mongodb://127.0.0.1:27017/assingmentR")
+  .connect("mongodb://127.0.0.1:27017/mernapp12345")
   .then(() => {
-    console.log("DB Connected");
+    console.log("Db  connected");
   })
   .catch((err) => {
-    console.log("Db is not connected");
-    console.log(err);
+    console.log("DB is not connected");
   });
-
 app.use(express.json());
-//SeedDB();
-app.use(prodRouter);
-
+//seedDB();
+app.use(blogRoutes);
 app.listen(8080, () => {
-  console.log("server start at port 8080");
+  console.log("server started at port 8080");
 });
